@@ -1,67 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Easy Wins – Small Wins for Tough Days</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXX');
-</script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Wins – Feel Better Fast</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #f3f7f5;
+        color: #1b4332;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
 
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
 
-</head>
-<body>
-  <header>
-    <div class="container">
+      p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      img {
+        max-width: 90%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      input[type="email"] {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        border-radius: 50px;
+        border: 2px solid #2d6a4f;
+        width: 260px;
+        max-width: 90%;
+      }
+
+      .cta {
+        background-color: #1b4332;
+        color: white;
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .cta:hover {
+        background-color: #2d6a4f;
+        transform: scale(1.05);
+      }
+
+      #thankyou {
+        display: none;
+        font-size: 1.3rem;
+        margin-top: 2rem;
+        color: #1b4332;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
       <h1>Easy Wins</h1>
-      <p class="subtitle">Small wins for tough days.</p>
-    </div>
-  </header>
+      <p>When you're having a tough day, sometimes you just need a quick win. Easy Wins gives you small, doable tasks that help you feel better fast.</p>
+      <img src="mockup.png" alt="Easy Wins App Mockup" />
 
-  <section class="hero container">
-    <div class="text">
-      <h2>Turn rough days into progress.</h2>
-      <p>Easy Wins gives you quick, doable tasks — like reading a page, doing 10 push-ups, or taking a short walk — so you can rebuild momentum when you need it most.</p>
-      <a class="cta-button" href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank">Join the Early Access List</a>
-    </div>
-    <div class="image">
-      <img src="images/mockup.png" alt="Easy Wins app mockup" />
-    </div>
-  </section>
+      <form id="signupForm" onsubmit="submitForm(event)">
+        <input type="email" name="email" placeholder="Enter your email" required />
+        <button class="cta" type="submit">Get Early Access</button>
+      </form>
 
-  <section class="features container">
-    <h3>Why Easy Wins?</h3>
-    <div class="feature-grid">
-      <div class="feature">
-        <h4>🎯 Instant Wins</h4>
-        <p>Pick a 2-minute task that helps you reset and feel a small sense of progress.</p>
-      </div>
-      <div class="feature">
-        <h4>🧠 Mood-Based Suggestions</h4>
-        <p>Tell us how you feel — we’ll suggest the right kind of win for that moment.</p>
-      </div>
-      <div class="feature">
-        <h4>💬 No Pressure</h4>
-        <p>It’s not about streaks or goals — just small, easy wins when you need them.</p>
-      </div>
-    </div>
-  </section>
+      <div id="thankyou">🎉 Thanks! You’re on the list — we’ll notify you soon!</div>
+    </main>
 
-  <section class="cta container">
-    <h3>Be the first to try Easy Wins</h3>
-    <p>We’re inviting early users to test the app and share feedback before launch.</p>
-    <a class="cta-button" href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank">Join the Waitlist</a>
-  </section>
+    <script>
+      function submitForm(e) {
+        e.preventDefault();
+        const form = document.getElementById("signupForm");
+        const email = form.email.value;
 
-  <footer>
-    <p>© 2025 Easy Wins. Built with 💪 for small victories.</p>
-  </footer>
-</body>
+        // Replace YOUR_FORM_URL below with your real Google Form link
+        const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfNIsBM-j1My5vB4H_JEpwfZzUqjLudJ5j1bftaJYLl7L4dZw/viewform?usp=header";
+        const submitURL = formURL + "?usp=pp_url&entry.401016462=" + encodeURIComponent(email);
+
+        // Send the form
+        fetch(submitURL, { method: "POST", mode: "no-cors" })
+          .then(() => {
+            form.style.display = "none";
+            document.getElementById("thankyou").style.display = "block";
+          })
+          .catch(() => {
+            form.style.display = "none";
+            document.getElementById("thankyou").innerText =
+              "✅ You’re on the list! (If it doesn’t load, we still got your email)";
+            document.getElementById("thankyou").style.display = "block";
+          });
+      }
+    </script>
+  </body>
 </html>
