@@ -22,8 +22,11 @@
       <h2>Turn rough days into progress.</h2>
       <p>Easy Wins gives you quick, doable tasks — like reading a page, doing 10 push-ups, or taking a short walk — so you can rebuild momentum when you need it most.</p>
 
-      <form id="signupForm" onsubmit="submitForm(event)">
-        <input type="email" name="email" placeholder="Enter your email" required />
+      <form id="signupForm" onsubmit="submitForm(event)" class="floating-form">
+        <div class="input-group">
+          <input type="email" name="email" placeholder=" " required />
+          <label>Email address</label>
+        </div>
         <button type="submit">Join the Early Access List</button>
       </form>
       <div id="thankyou">🎉 Thanks! You're on the list — we’ll notify you soon!</div>
@@ -56,11 +59,14 @@
     <h3>Be the first to try Easy Wins</h3>
     <p>We’re inviting early users to test the app and share feedback before launch.</p>
 
-    <form id="signupFormBottom" onsubmit="submitForm(event)">
-      <input type="email" name="email" placeholder="Enter your email" required />
+    <form id="signupFormBottom" onsubmit="submitForm(event)" class="floating-form">
+      <div class="input-group">
+        <input type="email" name="email" placeholder=" " required />
+        <label>Email address</label>
+      </div>
       <button type="submit">Join the Waitlist</button>
     </form>
-    <div id="thankyouBottom" style="display:none;">✅ You’re on the list! We’ll reach out soon.</div>
+    <div id="thankyouBottom">✅ You’re on the list! We’ll reach out soon.</div>
   </section>
 
   <footer>
@@ -95,4 +101,3 @@
   </script>
 </body>
 </html>
-
