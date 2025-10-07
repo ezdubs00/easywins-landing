@@ -54,7 +54,7 @@
         max-width: 90%;
       }
 
-      .cta {
+      button {
         background-color: #1b4332;
         color: white;
         padding: 1rem 2.5rem;
@@ -65,9 +65,17 @@
         transition: all 0.2s ease-in-out;
       }
 
-      .cta:hover {
+      button:hover {
         background-color: #2d6a4f;
         transform: scale(1.05);
+      }
+
+      footer {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
       }
 
       #thankyou {
@@ -88,32 +96,37 @@
 
       <form id="signupForm" onsubmit="submitForm(event)">
         <input type="email" name="email" placeholder="Enter your email" required />
-        <button class="cta" type="submit">Get Early Access</button>
+        <button type="submit">Get Early Access</button>
       </form>
 
-      <div id="thankyou">🎉 Thanks! You’re on the list — we’ll notify you soon!</div>
+      <div id="thankyou">🎉 Thanks! You're on the list — we’ll notify you soon!</div>
     </main>
 
     <script>
       function submitForm(e) {
         e.preventDefault();
+
         const form = document.getElementById("signupForm");
         const email = form.email.value;
 
-        // Replace YOUR_FORM_URL below with your real Google Form link
-        const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfNIsBM-j1My5vB4H_JEpwfZzUqjLudJ5j1bftaJYLl7L4dZw/viewform?usp=header";
-        const submitURL = formURL + "?usp=pp_url&entry.401016462=" + encodeURIComponent(email);
+        // 👇 Replace this with your real Google Form details
+        const formURL =
+          "hhttps://docs.google.com/forms/u/0/d/1QFKOlRmBkuSIKDte9_AxNXHraYkAbzE3pCuIxEL0TDA/previewResponse"; // your form’s POST endpoint
+        const entryID = "entry.401016462"; // your email field ID
 
-        // Send the form
+        const submitURL = `${formURL}?${entryID}=${encodeURIComponent(email)}`;
+
         fetch(submitURL, { method: "POST", mode: "no-cors" })
           .then(() => {
+            form.reset();
             form.style.display = "none";
             document.getElementById("thankyou").style.display = "block";
           })
           .catch(() => {
+            form.reset();
             form.style.display = "none";
             document.getElementById("thankyou").innerText =
-              "✅ You’re on the list! (If it doesn’t load, we still got your email)";
+              "✅ You're on the list! (If it doesn’t load, we still got your email)";
             document.getElementById("thankyou").style.display = "block";
           });
       }
