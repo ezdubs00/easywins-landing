@@ -51,34 +51,58 @@ header h1 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-form {
+/* Modern Floating Label Form */
+.floating-form {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
   margin-top: 1.5rem;
-  background: #ffffff;
-  border-radius: 50px;
-  padding: 0.3rem 0.4rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   max-width: 380px;
 }
 
-input[type="email"] {
+.floating-form .input-group {
+  position: relative;
   flex: 1;
-  padding: 0.9rem 1.2rem;
+}
+
+.floating-form input[type="email"] {
+  width: 100%;
+  padding: 1rem 1.2rem;
   font-size: 1rem;
-  border: none;
-  outline: none;
+  border: 2px solid #d8f3dc;
   border-radius: 50px;
   background: transparent;
   color: #1b4332;
+  outline: none;
+  transition: 0.3s;
 }
 
-input[type="email"]::placeholder {
+.floating-form input[type="email"]:focus {
+  border-color: #40916c;
+  box-shadow: 0 0 8px rgba(64, 145, 108, 0.3);
+}
+
+.floating-form label {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
   color: #6c757d;
-  opacity: 0.8;
-  font-style: italic;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: 0.3s;
+  font-style: normal;
+}
+
+.floating-form input:focus + label,
+.floating-form input:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 1rem;
+  background: #ffffff;
+  padding: 0 0.3rem;
+  font-size: 0.8rem;
+  color: #1b4332;
 }
 
 button {
@@ -99,12 +123,9 @@ button:hover {
   background: linear-gradient(135deg, #2d6a4f, #40916c);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
-input[type="email"]:focus {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-}
 
-
-#thankyou {
+#thankyou,
+#thankyouBottom {
   display: none;
   font-weight: 600;
   color: #1b4332;
@@ -152,5 +173,9 @@ footer {
   .hero {
     flex-direction: column;
   }
-}
 
+  .floating-form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
